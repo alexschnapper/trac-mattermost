@@ -71,7 +71,7 @@ class TicketNotifications(Component, TracMattermostComponent):
 
     def ticket_created(self, ticket):
         text = (
-            u"New ticket: {ticket} by @{username}"
+            u"New ticket: {ticket} by {username}"
         ).format(
             ticket=self.format_ticket(ticket),
             username=ticket["reporter"],
@@ -84,13 +84,13 @@ class TicketNotifications(Component, TracMattermostComponent):
 
         if old_values:
             fmt = (
-                u"@{username} changed {ticket}:\n"
+                u"{username} changed {ticket}:\n"
                 "{changes}\n"
                 "{comment}"
             )
         else:
             fmt = (
-                u"@{username} commented on {ticket}:\n"
+                u"{username} commented on {ticket}:\n"
                 "{comment}"
             )
 

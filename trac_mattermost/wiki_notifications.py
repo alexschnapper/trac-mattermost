@@ -28,7 +28,7 @@ class WikiNotifications(Component, TracMattermostComponent):
         )
 
     def wiki_page_added(self, page):
-        fmt = u"@{author} created {page}"
+        fmt = u"{author} created {page}"
         text = fmt.format(
             author=page.author,
             page=self.format_page(page),
@@ -36,7 +36,7 @@ class WikiNotifications(Component, TracMattermostComponent):
         self.send_notification(text)
 
     def wiki_page_changed(self, page, version, t, comment, author, ipnr):
-        fmt = u"@{author} edited {page}"
+        fmt = u"{author} edited {page}"
         if comment:
             fmt = fmt + ": {comment}"
         text = fmt.format(
