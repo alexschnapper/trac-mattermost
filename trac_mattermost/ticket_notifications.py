@@ -62,8 +62,8 @@ class TicketNotifications(Component, TracMattermostComponent):
                     f = u"**{0}** changed".format(field_labels[k])
                 else:
                     f = (
-                        u"**{0}** changed from *{1}* to *{2}* - {3} "
-                        .format(field_labels[k], v, ticket[k], k)
+                        u"**{0}** changed from *{1}* to *{2}*"
+                        .format(field_labels[k], v, ticket[k])
                     )
             formatted.append(f)
 
