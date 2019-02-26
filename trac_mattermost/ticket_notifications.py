@@ -62,14 +62,18 @@ class TicketNotifications(Component, TracMattermostComponent):
                     f = u"**{0}** changed".format(field_labels[k])
                 else:
                     f = (
-                        u"**{0}** changed from *{1}* to *{2}*"
-                        .format(field_labels[k], v, ticket[k])
+                        u"**{0}** changed from *{1}* to *{2}* - {3} "
+                        .format(field_labels[k], v, ticket[k], k)
                     )
             formatted.append(f)
 
         return u"\n".join(formatted)
 
     def ticket_created(self, ticket):
+        cmpt = ticket['component']
+
+        if cmpt == "RIS-Anwenderhilfe": return
+
         text = (
             u"New ticket: {ticket} by {username}"
         ).format(
@@ -80,6 +84,10 @@ class TicketNotifications(Component, TracMattermostComponent):
         self.send_notification(text)
 
     def ticket_changed(self, ticket, comment, author, old_values):
+        cmpt = ticket['component']
+
+        if cmpt == "RIS-Anwenderhilfe": return
+
         comment = format_comment(comment)
 
         if old_values:
